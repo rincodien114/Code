@@ -1,0 +1,61 @@
+#include <iostream>
+using namespace std;
+struct sinhvien
+{
+    char hoten[50];
+    float diem[50], dtb;
+    char xeploai[10];
+
+};
+int somon;
+sinhvien lop[100];
+int siso;
+void input(sinhvien &sv) {
+    cout<<"Nhap si so lop: ";
+    cin>>siso;
+    cout<<"Nhap so mon: ";
+    cin>>somon;
+    //int a[50];
+    for(int i=1;i<=siso;i++) {
+        cout<<"Nhap ho va ten sv thu "<<i<<": ";
+        cin.ignore();
+        cin.getline(sv.hoten,50);
+        for(int j=1;j<=somon;j++) {
+            cout<<"Nhap diem mon thu "<<j<<": ";
+            cin>>sv.diem[i];
+        }
+    }
+}
+void dtbvaxeploai(sinhvien &sv) {
+    int a[50];
+    float S=0;
+    for(int i=1;i<=somon;i++) {
+        S=S+a[i];
+    }
+    sv.dtb=S/somon;
+    if(sv.dtb>=8){
+		strcpy(sv.xeploai, "GIOI");
+	}
+	else if(sv.dtb>=6.5 && sv.dtb<8){
+		strcpy(sv.xeploai, "KHA");
+	}
+    else if(sv.dtb<6.5 && sv.dtb>=5) {
+        strcpy(sv.xeploai, "TRUNG BINH");
+    }
+	else strcpy(sv.xeploai, "YEU");
+}
+void output(sinhvien &sv) {
+    for(int i=1;i<=siso;i++) {
+        cout<<"Ho va ten sv thu "<<i<<": "<<sv.hoten<<endl;
+        cout<<"DTB cua sv thu "<<i<<": "<<sv.dtb<<endl;
+        cout<<"Xep loai sv thu "<<i<<": "<<sv.xeploai<<endl;
+
+        }
+
+}
+int main() {
+    sinhvien sv;
+    input(sv);
+    dtbvaxeploai(sv);
+    output(sv);
+}
